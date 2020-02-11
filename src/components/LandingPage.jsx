@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import { Image, List, Container, Divider, Message } from 'semantic-ui-react';
 
 class LandingPage extends Component {

@@ -34,15 +34,19 @@ class LandingPage extends Component {
       users = userData.map(user => {
         return (
           <>
-          <List.Item className='list-item' id={`user-${user.id}`} key={`user-${user.id}`}>
-            <Image size='small' avatar src={user.avatar} />
-            <List.Content>
-              <List.Header id={`name-${user.id}`}>
-                {user.first_name} {user.last_name}
-              </List.Header>
-            </List.Content>
-          </List.Item>
-          <Divider />
+            <List.Item
+              className='list-item'
+              id={`user-${user.id}`}
+              key={`user-${user.id}`}
+            >
+              <Image size='small' avatar src={user.avatar} />
+              <List.Content>
+                <List.Header id={`name-${user.id}`}>
+                  {user.first_name} {user.last_name}
+                </List.Header>
+              </List.Content>
+            </List.Item>
+            <Divider />
           </>
         );
       });
@@ -50,7 +54,6 @@ class LandingPage extends Component {
 
     return (
       <>
-        <h1>hey</h1>
         <Container id='user-container'>
           <List id='users' animated verticalAlign='middle'>
             {users}

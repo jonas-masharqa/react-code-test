@@ -1,7 +1,7 @@
 import React from 'react';
 import LandingPage from './components/LandingPage';
-import SpecificUser from './components/SpecificUser'
-import { Route } from 'react-router-dom'
+import SpecificUser from './components/SpecificUser';
+import { Route } from 'react-router-dom';
 
 const App = () => {
   return (

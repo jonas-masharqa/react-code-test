@@ -1,3 +1,13 @@
 body {
   margin: 4rem !important;
 }
+
+/* LandingPage */
+
+#user-container {
+  padding: 0 10%;
+}
+
+.list-item {
+  padding: 2rem 0 !important;
+}

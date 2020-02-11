@@ -12,6 +12,19 @@ class LandingPage extends Component {
 
   componentDidMount() {
     this.getUsers(this.state.page);
+
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0
+    }
+
+    this.observer = new IntersectionObserver(
+      this.handleObserver.bind(this),
+      options
+    )
+
+    this.observer.observe(this.loadingRef)
   }
 
   getUsers(page) {

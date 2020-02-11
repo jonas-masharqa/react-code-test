@@ -9,11 +9,18 @@ describe('', () => {
     });
     cy.visit('http://localhost:3000');
 
-    cy.get('#users').within(() => {
-      cy.get('#user-1').within(() => {
-        cy.get('#first_name-1');
-        cy.get('#last_name-1');
-      });
-    });
+
+      cy.get('#users').within(() => {
+        cy.get('#user-1').within(() => {
+          cy.get('#name-1');
+        });
+      })
+
+    // cy.get('#users').within(() => {
+    //   cy.get('#user-1').within(() => {
+    //     cy.get('#first_name-1');
+    //     cy.get('#last_name-1');
+    //   });
+    // });
   });
 });

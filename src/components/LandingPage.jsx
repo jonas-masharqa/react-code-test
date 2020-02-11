@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import { Image, List } from 'semantic-ui-react';
+import axios from 'axios';
+import { Image, List, Container } from 'semantic-ui-react';
 
 class LandingPage extends Component {
   state = {
@@ -8,8 +8,8 @@ class LandingPage extends Component {
     errorMessage: null
   };
 
-  componentDidMount () {
-    this.getUsers()
+  componentDidMount() {
+    this.getUsers();
   }
 
   getUsers() {
@@ -33,10 +33,10 @@ class LandingPage extends Component {
     if (userData.length > 0) {
       users = userData.map(user => {
         return (
-          <List.Item>
+          <List.Item id={`user-${user.id}`} key={`user-${user.id}`}>
             <Image size='small' avatar src={user.avatar} />
             <List.Content>
-              <List.Header>
+              <List.Header id={`name-${user.id}`}>
                 {user.first_name} {user.last_name}
               </List.Header>
             </List.Content>
@@ -47,10 +47,12 @@ class LandingPage extends Component {
 
     return (
       <>
-      <h1>hey</h1>
-        <List animated verticalAlign='middle'>
-          {users}
-        </List>
+        <h1>hey</h1>
+        <Container>
+          <List id='users' divided relaxed animated verticalAlign='middle'>
+            {users}
+          </List>
+        </Container>
       </>
     );
   }

@@ -6,25 +6,36 @@ class LandingPage extends Component {
   state = {
     users: [],
     page: 1,
+    lastY: 0,
     loading: false,
     errorMessage: null
   };
 
   componentDidMount() {
     this.getUsers(this.state.page);
+    this.setState({ page: this.state.page + 1 });
 
     const options = {
       root: null,
       rootMargin: '0px',
       threshold: 1.0
-    }
+    };
 
     this.observer = new IntersectionObserver(
       this.handleObserver.bind(this),
       options
-    )
+    );
 
-    this.observer.observe(this.loadingRef)
+    this.observer.observe(this.loadingRef);
+  }
+
+  handleObserver(entries, observer) {
+    const y = entries[0].boundingClientRect.y;
+    if (this.state.lastY > y) {
+      this.getUsers(this.state.page);
+      this.setState({ page: this.state.page + 1 });
+    }
+    this.setState({ lastY: y });
   }
 
   getUsers(page) {
@@ -52,6 +63,7 @@ class LandingPage extends Component {
       height: '100px',
       margin: '30px'
     };
+
     if (userData.length > 0) {
       users = userData.map(user => {
         return (

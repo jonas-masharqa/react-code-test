@@ -127,7 +127,7 @@ class LandingPage extends Component {
             </List>
           </div>
         </Container>
-        <div>{noMoreUsers}</div>
+        <div id='no-users'>{noMoreUsers}</div>
         <div id='error-message'>{errorMessage}</div>
         <div
           id='loading-ref'

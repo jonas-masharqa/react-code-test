@@ -101,9 +101,7 @@ class LandingPage extends Component {
     if (this.state.error) {
       errorMessage = (
         <Message id='error' negative>
-          <Message.Header>
-           {this.state.errorMessage}
-          </Message.Header>
+          <Message.Header>{this.state.errorMessage}</Message.Header>
         </Message>
       );
     }
@@ -119,7 +117,7 @@ class LandingPage extends Component {
             >
               <Image size='small' avatar src={user.avatar} />
               <List.Content>
-                <List.Header id={`name-${user.id}`}>
+                <List.Header className='user-name' id={`name-${user.id}`}>
                   {user.first_name} {user.last_name}
                 </List.Header>
               </List.Content>

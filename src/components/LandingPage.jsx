@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from './Loader'
 import axios from 'axios';
 import { Image, List, Container, Divider } from 'semantic-ui-react';
 
@@ -101,7 +102,7 @@ class LandingPage extends Component {
           style={loadingCSS}
         >
           <span style={loadingTextCSS}>
-            <div>Loading...</div>
+            <Loader />
           </span>
         </div>
       </>

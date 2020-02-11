@@ -5,22 +5,27 @@ import { Image, List, Container, Divider } from 'semantic-ui-react';
 class LandingPage extends Component {
   state = {
     users: [],
+    page: 1,
+    loading: false,
     errorMessage: null
   };
 
   componentDidMount() {
-    this.getUsers();
+    this.getUsers(this.state.page);
   }
 
-  getUsers() {
-    axios.get(`https://reqres.in/api/users?page=1`).then(response => {
+  getUsers(page) {
+    this.setState({ loading: true })
+    axios.get(`https://reqres.in/api/users?page=${page}`).then(response => {
       if (response.status === 200) {
         this.setState({
-          users: response.data.data
+          users: response.data.data,
+          loading: false
         });
       } else {
         this.setState({
-          errorMessage: "Couldn't load users.."
+          errorMessage: "Couldn't load users..",
+          loading: false
         });
       }
     });

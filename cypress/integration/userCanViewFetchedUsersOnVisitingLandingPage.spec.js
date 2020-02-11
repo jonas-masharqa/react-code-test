@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe('', () => {
+describe('User can view fetched users when visiting landing page', () => {
   it('successfully', () => {
     cy.server();
     cy.route({

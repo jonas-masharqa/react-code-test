@@ -11,3 +11,16 @@ body {
 .list-item {
   margin: 1.5rem 0 !important;
 }
+
+#no-users {
+  text-align: center;
+}
+
+#error {
+  text-align: center;
+}
+
+.user-name {
+  font-size: 23px;
+  padding-left: 2.5rem;
+}

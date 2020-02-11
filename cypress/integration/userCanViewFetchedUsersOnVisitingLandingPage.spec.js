@@ -13,7 +13,6 @@ describe('', () => {
       cy.get('#user-1').within(() => {
         cy.get('#first_name-1');
         cy.get('#last_name-1');
-        cy.get('#email-1');
       });
     });
   });

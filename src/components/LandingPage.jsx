@@ -89,11 +89,23 @@ class LandingPage extends Component {
     };
 
     if (this.state.noUsers) {
-      noMoreUsers = <Message color='teal' id='no-users'>End of the line! There are no more users to load.</Message>;
+      noMoreUsers = (
+        <Message color='teal' id='no-users'>
+          <Message.Header>
+            End of the line! There are no more users to load.
+          </Message.Header>
+        </Message>
+      );
     }
 
     if (this.state.error) {
-      errorMessage = <h1>{this.state.errorMessage}</h1>;
+      errorMessage = (
+        <Message id='error' negative>
+          <Message.Header>
+           {this.state.errorMessage}
+          </Message.Header>
+        </Message>
+      );
     }
 
     if (userData.length > 0) {
@@ -128,7 +140,7 @@ class LandingPage extends Component {
           </div>
           {noMoreUsers}
         </Container>
-        <div id='error-message'>{errorMessage}</div>
+        {errorMessage}
         <div
           id='loading-ref'
           ref={loadingRef => (this.loadingRef = loadingRef)}

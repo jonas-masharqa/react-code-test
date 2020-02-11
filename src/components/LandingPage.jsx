@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from './Loader'
+import Loader from './Loader';
 import axios from 'axios';
 import { Image, List, Container, Divider } from 'semantic-ui-react';
 
@@ -8,6 +8,7 @@ class LandingPage extends Component {
     users: [],
     page: 1,
     lastY: 0,
+    noUsers: false,
     loading: false,
     errorMessage: null
   };
@@ -41,29 +42,59 @@ class LandingPage extends Component {
 
   getUsers(page) {
     this.setState({ loading: true });
-    axios.get(`https://reqres.in/api/users?page=${page}`).then(response => {
-      if (response.status === 200) {
-        this.setState({
-          users: [...this.state.users, ...response.data.data],
-          loading: false
+
+    this.state.page > 1
+      ? setTimeout(
+          /* Second + time calling getUsers */
+          () =>
+            axios.get(`https://reqres.in/api/users?page=${page}`).then(res => {
+              if (res.data.data.length === 0 && res.status === 200) {
+                this.setState({
+                  noUsers: true,
+                  loading: false
+                });
+                this.observer.disconnect();
+              } else if (res.status === 200) {
+                this.setState({
+                  users: [...this.state.users, ...res.data.data],
+                  loading: false
+                });
+              } else {
+                this.setState({ errorMessage: "Couldn't load users.." });
+              }
+            }),
+          3000
+        )
+      : axios.get(`https://reqres.in/api/users?page=${page}`).then(res => {
+          /* First time calling getUsers */
+
+          if (res.status === 200) {
+            this.setState({
+              users: [...this.state.users, ...res.data.data],
+              loading: false
+            });
+          } else {
+            this.setState({ errorMessage: "Couldn't load users.." });
+          }
         });
-      } else {
-        this.setState({
-          errorMessage: "Couldn't load users..",
-          loading: false
-        });
-      }
-    });
   }
 
   render() {
     const loadingTextCSS = { display: this.state.loading ? 'block' : 'none' };
     let userData = this.state.users;
-    let users;
+    let users, noMoreUsers, errorMessage;
     const loadingCSS = {
       height: '100px',
       margin: '30px'
     };
+
+    if (this.state.noUsers) {
+      noMoreUsers = <p>There are no more users to load.</p>;
+    }
+
+    if (this.state.error) {
+      errorMessage = <h1>{this.state.errorMessage}</h1>;
+    }
 
     if (userData.length > 0) {
       users = userData.map(user => {
@@ -96,6 +127,8 @@ class LandingPage extends Component {
             </List>
           </div>
         </Container>
+        <div>{noMoreUsers}</div>
+        <div id='error-message'>{errorMessage}</div>
         <div
           id='loading-ref'
           ref={loadingRef => (this.loadingRef = loadingRef)}

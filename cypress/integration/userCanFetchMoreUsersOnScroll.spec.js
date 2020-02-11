@@ -24,5 +24,8 @@ describe('User can load more users on scroll', () => {
     cy.get('#user-7');
     cy.get('#user-8');
     cy.get('#user-9');
+    cy.get('#user-10');
+    cy.get('#user-11');
+    cy.get('#user-12');
   });
 });

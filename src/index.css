@@ -11,3 +11,7 @@ body {
 .list-item {
   margin: 1.5rem 0 !important;
 }
+
+#no-users{
+  text-align: center;
+}

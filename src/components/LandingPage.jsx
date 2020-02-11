@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import axios from 'axios';
-import { Image, List, Container, Divider } from 'semantic-ui-react';
+import { Image, List, Container, Divider, Message } from 'semantic-ui-react';
 
 class LandingPage extends Component {
   state = {
@@ -89,7 +89,7 @@ class LandingPage extends Component {
     };
 
     if (this.state.noUsers) {
-      noMoreUsers = <p>There are no more users to load.</p>;
+      noMoreUsers = <Message color='teal' id='no-users'>End of the line! There are no more users to load.</Message>;
     }
 
     if (this.state.error) {
@@ -126,8 +126,8 @@ class LandingPage extends Component {
               {users}
             </List>
           </div>
+          {noMoreUsers}
         </Container>
-        <div id='no-users'>{noMoreUsers}</div>
         <div id='error-message'>{errorMessage}</div>
         <div
           id='loading-ref'

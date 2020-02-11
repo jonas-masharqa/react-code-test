@@ -15,11 +15,11 @@ class LandingPage extends Component {
   }
 
   getUsers(page) {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     axios.get(`https://reqres.in/api/users?page=${page}`).then(response => {
       if (response.status === 200) {
         this.setState({
-          users: response.data.data,
+          users: [...this.state.users, ...response.data.data],
           loading: false
         });
       } else {
@@ -32,9 +32,13 @@ class LandingPage extends Component {
   }
 
   render() {
+    const loadingTextCSS = { display: this.state.loading ? 'block' : 'none' };
     let userData = this.state.users;
     let users;
-
+    const loadingCSS = {
+      height: '100px',
+      margin: '30px'
+    };
     if (userData.length > 0) {
       users = userData.map(user => {
         return (
@@ -60,10 +64,21 @@ class LandingPage extends Component {
     return (
       <>
         <Container id='user-container'>
-          <List id='users' animated verticalAlign='middle'>
-            {users}
-          </List>
+          <div id='users' style={{ minHeight: 'auto' }}>
+            <List id='users' animated verticalAlign='middle'>
+              {users}
+            </List>
+          </div>
         </Container>
+        <div
+          id='loading-ref'
+          ref={loadingRef => (this.loadingRef = loadingRef)}
+          style={loadingCSS}
+        >
+          <span style={loadingTextCSS}>
+            <div>Loading...</div>
+          </span>
+        </div>
       </>
     );
   }

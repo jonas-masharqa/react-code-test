@@ -17,7 +17,6 @@ class SingleUser extends Component {
   getSpecificUser(userId) {
     axios.get(`https://reqres.in/api/users/${userId}`).then(res => {
       if (res.status === 200) {
-        debugger;
         this.setState({
           user: res.data.data
         });

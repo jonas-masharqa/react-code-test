@@ -136,7 +136,7 @@ class LandingPage extends Component {
             <p id='contact-image-text'>Scroll to load your users</p>
           </div>
           <div style={{ minHeight: 'auto' }}>
-            <List id='users' animated verticalAlign='middle'>
+            <List id='users' verticalAlign='middle'>
               {users}
             </List>
           </div>

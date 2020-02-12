@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import { Image, List, Container, Divider, Message } from 'semantic-ui-react';
 
 class LandingPage extends Component {
@@ -109,7 +110,7 @@ class LandingPage extends Component {
     if (userData.length > 0) {
       users = userData.map(user => {
         return (
-          <>
+          <NavLink id={`user_${user.id}`} key={user.id} to={`/user/${user.id}`}>
             <List.Item
               className='list-item'
               id={`user-${user.id}`}
@@ -123,7 +124,7 @@ class LandingPage extends Component {
               </List.Content>
             </List.Item>
             <Divider />
-          </>
+          </NavLink>
         );
       });
     }
@@ -131,7 +132,7 @@ class LandingPage extends Component {
     return (
       <>
         <Container id='user-container'>
-          <div id='users' style={{ minHeight: 'auto' }}>
+          <div style={{ minHeight: 'auto' }}>
             <List id='users' animated verticalAlign='middle'>
               {users}
             </List>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ScrollToTopOnMount from './ScrollToTopOnMount';
 import { Image, Grid, Container } from 'semantic-ui-react';
 
 class SingleUser extends Component {
@@ -49,7 +50,12 @@ class SingleUser extends Component {
       );
     }
 
-    return <>{specificUser}</>;
+    return (
+      <>
+        <ScrollToTopOnMount />
+        {specificUser}
+      </>
+    );
   }
 }
 

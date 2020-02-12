@@ -34,15 +34,15 @@ class SingleUser extends Component {
 
     if (this.state.user) {
       specificUser = (
-        <Container>
+        <Container id='specific-user-container'>
           <Grid container columns={2} id='user-grid'>
             <Grid.Column width={6} verticalAlign='middle'>
               <Image src={userData.avatar} size='medium' circular />
             </Grid.Column>
             <Grid.Column verticalAlign='middle'>
               <div id='info'>
-                <h2>{`${userData.first_name} ${userData.last_name}`}</h2>
-                <h3>{userData.email}</h3>
+                <h2 id={`user-name-${userData.id}`}>{`${userData.first_name} ${userData.last_name}`}</h2>
+                <h3 id={`user-email-${userData.id}`}>{userData.email}</h3>
               </div>
             </Grid.Column>
           </Grid>

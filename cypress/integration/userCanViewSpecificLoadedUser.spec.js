@@ -12,8 +12,9 @@ describe('User can view specific user', () => {
     cy.get('#users').within(() => {
       cy.get('#user-1').click();
     });
-    cy.get('#user-first_name-1');
-    cy.get('#user-last_name-1');
-    cy.get('#user-email-1');
+    cy.get('#info').within(() => {
+      cy.get('#user-name-1').should('contain', 'Janet');
+      cy.get('#user-email-1').should('contain', 'janet.weaver@reqres.in');
+    });
   });
 });

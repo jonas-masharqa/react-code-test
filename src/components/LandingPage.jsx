@@ -132,7 +132,7 @@ class LandingPage extends Component {
     return (
       <>
         <Container id='user-container'>
-          <div id='users' style={{ minHeight: 'auto' }}>
+          <div style={{ minHeight: 'auto' }}>
             <List id='users' animated verticalAlign='middle'>
               {users}
             </List>

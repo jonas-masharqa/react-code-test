@@ -11,7 +11,8 @@ describe('User can view fetched users when visiting landing page', () => {
 
     cy.get('#users').within(() => {
       cy.get('#user-1').within(() => {
-        cy.get('#name-1');
+        cy.get('#name-1').should('contain', 'Michael');
+        cy.get('#name-1').should('contain', 'Lawson');
       });
     });
   });

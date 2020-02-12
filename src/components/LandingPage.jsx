@@ -132,6 +132,9 @@ class LandingPage extends Component {
     return (
       <>
         <Container id='user-container'>
+          <div id='contact-wrapper'>
+            <p id='contact-image-text'>Scroll to load your users</p>
+          </div>
           <div style={{ minHeight: 'auto' }}>
             <List id='users' animated verticalAlign='middle'>
               {users}

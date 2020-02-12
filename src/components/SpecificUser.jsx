@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
-import { Image, Grid, Container } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import { Image, Grid, Container, Button } from 'semantic-ui-react';
 
 class SingleUser extends Component {
   state = {
@@ -41,8 +42,15 @@ class SingleUser extends Component {
             </Grid.Column>
             <Grid.Column verticalAlign='middle'>
               <div id='info'>
-                <h2 id={`user-name-${userData.id}`}>{`${userData.first_name} ${userData.last_name}`}</h2>
+                <h2
+                  id={`user-name-${userData.id}`}
+                >{`${userData.first_name} ${userData.last_name}`}</h2>
                 <h3 id={`user-email-${userData.id}`}>{userData.email}</h3>
+              </div>
+              <div id='back'>
+                <NavLink to='/'>
+                  <Button color='teal'>Back</Button>
+                </NavLink>
               </div>
             </Grid.Column>
           </Grid>
